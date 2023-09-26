@@ -1,0 +1,32 @@
+# 忽略编译生成的文件和目录
+target/
+bin/
+out/
+build/
+
+# 忽略自动生成的文件
+.classpath
+.project
+.settings/
+
+# 忽略编辑器或IDE生成的文件和目录
+.idea/
+*.iml
+*.ipr
+*.iws
+
+# 忽略依赖库（这取决于你的构建工具和依赖管理系统）
+# Maven
+/.repository/
+target/
+
+# Gradle
+/.gradle/
+build/
+
+# 忽略日志文件
+*.log
+
+# 忽略编译产生的字节码
+*.class
+
