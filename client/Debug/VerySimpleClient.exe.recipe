@@ -2,7 +2,7 @@
 <Project>
   <ProjectOutputs>
     <ProjectOutput>
-      <FullPath>D:\workD\socket\reference\VerySimpleClient\Debug\VerySimpleClient.exe</FullPath>
+      <FullPath>D:\workD\socket\src\client\Debug\VerySimpleClient.exe</FullPath>
     </ProjectOutput>
   </ProjectOutputs>
   <ContentFiles />
