@@ -1,2 +1,0 @@
-D:\workD\socket\reference\VerySimpleClient\Debug\VerySimpleClient.exe
-D:\workD\socket\src\client\Debug\VerySimpleClient.exe

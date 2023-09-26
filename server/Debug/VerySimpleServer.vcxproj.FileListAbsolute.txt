@@ -1,2 +1,0 @@
-D:\workD\socket\reference\VerySimpleServer\Debug\VerySimpleServer.exe
-D:\workD\socket\src\server\Debug\VerySimpleServer.exe
