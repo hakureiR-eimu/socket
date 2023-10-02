@@ -77,7 +77,7 @@ public class Client
                     {
                         // Read the radius from the keyboard
                         //System.out.println("http request < IP | port | directory | target > { 127.0.0.1 | 7050 | ./rec } | ./source/index.html ");
-                        System.out.print("Please enter a radius: ");
+                        System.out.print("Please enter content: ");
                         //Scanner scanner = new Scanner(System.in); // 创建一个Scanner对象，用于读取标准输入
                         double radius = scanner.nextDouble();
 
