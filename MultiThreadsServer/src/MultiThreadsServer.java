@@ -13,7 +13,7 @@ public class MultiThreadsServer
     public static void main(String[] args)
     {
         Scanner scan = new Scanner(System.in);
-        int port=8080;
+        int port=8000;
         String path="/source";
         try
         {
@@ -43,7 +43,7 @@ public class MultiThreadsServer
                  */
                 // Print the new connect number on the console
                 //System.out.println("Starting thread "+i);
-                System.out.println("接受新连接:");
+                System.out.println("\n接受新连接:");
                 System.out.println("客户端地址: " + connectToClient.getInetAddress());
                 System.out.println("客户端端口: " + connectToClient.getPort());
                 /**
@@ -105,84 +105,6 @@ class ThreadHandler extends Thread
              */
             BufferedReader in = new BufferedReader(new InputStreamReader(connectToClient.getInputStream()));
             OutputStream out = connectToClient.getOutputStream();
-            // Continuously serve the client
-//            while (true)
-//            {
-//                // Receive data from the client in string
-////                StringTokenizer st = new StringTokenizer
-////                        (isFromClient.readLine());
-////                String requestLine = isFromClient.readLine();
-////                if(requestLine != null){
-////                    System.out.println("受到http请求： "+requestLine);
-////
-////                    if(requestLine.startsWith("GET")){
-////                        String[] requestParts = requestLine.split(" ");
-////                        String requestUrl = requestParts[1];
-////
-////                        String filePath = directory+requestUrl;
-////                        File file = new File(filePath);
-////                        try {
-////                            FileInputStream fileInputStream = new FileInputStream(filePath);
-////                            byte[] buffer = new byte[1024];
-////                            int bytesRead;
-////
-////                            osToClient.write("HTTP/1.1 200 OK\r\n".getBytes());
-////                            osToClient.write("Content-Type: application/octet-stream\r\n".getBytes());
-////                            osToClient.write("\r\n".getBytes());
-////
-////                            while ((bytesRead = fileInputStream.read(buffer)) != -1) {
-////                                osToClient.write(buffer, 0, bytesRead);
-////                            }
-////
-////                            fileInputStream.close();
-////                        } catch (FileNotFoundException e) {
-////                            // 文件不存在，返回404错误
-////                            String notFoundResponse = "HTTP/1.1 404 Not Found\r\n"
-////                                    + "Content-Type: text/plain\r\n"
-////                                    + "\r\n"
-////                                    + "文件未找到: " + requestUrl;
-////
-////                            osToClient.write(notFoundResponse.getBytes("UTF-8"));
-////                        }
-////
-////                    }
-////
-////
-////                }
-//                String requestLine = isFromClient.readLine();
-//                if(requestLine != null){
-//                    System.out.println("收到HTTP请求： " + requestLine);
-//
-//                    if(requestLine.startsWith("GET")){
-//                        String[] requestParts = requestLine.split(" ");
-//                        String requestUrl = requestParts[1];
-//                        String filepath = directory + requestUrl;
-//                        File file = new File(filepath);
-//                        try {
-//                            FileInputStream fileInputStream = new FileInputStream(filepath);
-//                            byte[] buffer = new byte[1024];
-//                            int bytesRead;
-//
-//                            osToClient.write("HTTP/1.1 200 OK\r\n".getBytes());
-//                            osToClient.write("Content-Type: application/octet-stream; charset=utf-8\r\n".getBytes());
-//                            osToClient.write("\r\n".getBytes());
-//
-//                            while ((bytesRead = fileInputStream.read(buffer)) != -1) {
-//                                osToClient.write(buffer, 0, bytesRead);
-//                            }
-//
-//                            fileInputStream.close();
-//                        } catch(FileNotFoundException e){
-//                            String notFoundResponse = "HTTP/1.1 404 Not Found\r\n"
-//                                    + "Content-Type: text/plain; charset=utf-8\r\n"
-//                                    + "\r\n"
-//                                    + "文件未找到: " + requestUrl;
-//
-//                            osToClient.write(notFoundResponse.getBytes("UTF-8"));
-//                        }
-//                    }
-//                }
-//            }
             String requestLine = in.readLine();
             System.out.println("客户端请求: " + requestLine);
             if (requestLine == null) {
@@ -204,7 +126,8 @@ class ThreadHandler extends Thread
                             + "Content-Type: " + contentType + "\r\n"
                             + "Content-Length: " + fileContent.length + "\r\n"
                             + "\r\n";
-                    out.write(response.getBytes("UTF-8"));
+                    //System.out.println("\n"+response+"\n");
+                    out.write(response.getBytes());
                     out.write(fileContent);
                     out.flush();
                     System.out.println("回复成功");
@@ -232,55 +155,3 @@ class ThreadHandler extends Thread
         }
     }
 }
-//public class LocalFileServer {
-//    public static void main(String[] args) throws IOException {
-//        int port = 8080; // 选择一个端口号，通常使用8080或80
-//
-//        ServerSocket serverSocket = new ServerSocket(port);
-//        System.out.println("HTTP服务器正在监听端口 " + port);
-//
-//        while (true) {
-//            try (Socket clientSocket = serverSocket.accept()) {
-//                BufferedReader in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
-//                OutputStream out = clientSocket.getOutputStream();
-//
-//                String requestLine = in.readLine();
-//                if (requestLine != null) {
-//                    System.out.println("收到HTTP请求: " + requestLine);
-//
-//                    if (requestLine.startsWith("GET")) {
-//                        String[] requestParts = requestLine.split(" ");
-//                        String requestUrl = requestParts[1];
-//
-//                        // 将请求的URL路径映射到本地文件路径
-//                        String filePath = "webroot" + requestUrl;
-//
-//                        try {
-//                            FileInputStream fileInputStream = new FileInputStream(filePath);
-//                            byte[] buffer = new byte[1024];
-//                            int bytesRead;
-//
-//                            out.write("HTTP/1.1 200 OK\r\n".getBytes());
-//                            out.write("Content-Type: application/octet-stream\r\n".getBytes());
-//                            out.write("\r\n".getBytes());
-//
-//                            while ((bytesRead = fileInputStream.read(buffer)) != -1) {
-//                                out.write(buffer, 0, bytesRead);
-//                            }
-//
-//                            fileInputStream.close();
-//                        } catch (FileNotFoundException e) {
-//                            // 文件不存在，返回404错误
-//                            String notFoundResponse = "HTTP/1.1 404 Not Found\r\n"
-//                                    + "Content-Type: text/plain\r\n"
-//                                    + "\r\n"
-//                                    + "文件未找到: " + requestUrl;
-//
-//                            out.write(notFoundResponse.getBytes("UTF-8"));
-//                        }
-//                    }
-//                }
-//            } catch (IOException e) {
-//                System.err.println("处理HTTP请求时出错: " + e.getMessage());
-//            }
-//
